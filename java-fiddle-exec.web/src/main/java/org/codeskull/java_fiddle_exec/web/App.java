@@ -1,10 +1,9 @@
 package org.codeskull.java_fiddle_exec.web;
 
-import org.codeskull.java_fiddle_exec.Compiler;
-
 import static spark.Spark.*;
 
-import java.io.UnsupportedEncodingException;
+import java.util.Map;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -13,16 +12,29 @@ import java.util.concurrent.TimeoutException;
 
 import org.codeskull.java_fiddle_exec.web.models.*;
 
+import static org.codeskull.java_fiddle_exec.web.utils.JsonUtil.json;
+import static org.codeskull.java_fiddle_exec.web.utils.CoalesceUtil.coalesce;
+
 public class App {
 	
-	public static final int SERVICE_PORT = 4568;
+	public static int SERVICE_PORT = 4568;
 
-	public static final int MAX_THREADS = 10;
+	public static int MAX_THREADS = 10;
 	
-	public static final int MIN_THREADS = 1;
+	public static int MIN_THREADS = 1;
 	
-	public static final int TIMEOUT = 8000;
+	public static int TIMEOUT = 8000;
 	
+	/*
+	static  {
+		Map<String, String> environment = System.getenv();
+		SERVICE_PORT = coalesce(4568, Integer.parseInt(environment.get("SERVICE_PORT")));
+		MAX_THREADS = coalesce(10, Integer.parseInt(environment.get("MAX_THREADS")));
+		MIN_THREADS = coalesce(1, Integer.parseInt(environment.get("MIN_THREADS")));
+		TIMEOUT = coalesce(8000, Integer.parseInt(environment.get("TIMEOUT")));
+	}
+	*/
+
 	public static void main(String[] args) {
 
 		port(SERVICE_PORT);
@@ -46,7 +58,7 @@ public class App {
 				return new Response("timeout");
 			}
 
-		}, org.codeskull.java_fiddle_exec.web.utils.JsonUtil.json());
+		}, json());
 
 
 	}
