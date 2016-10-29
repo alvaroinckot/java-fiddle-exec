@@ -1,15 +1,18 @@
 Manifest-Version: 1.0
 Built-By: alvar
 Class-Path: dependency-jars/java-fiddle-exec-0.0.1-SNAPSHOT.jar depend
- ency-jars/spark-core-2.0.0.jar dependency-jars/slf4j-api-1.7.2.jar de
- pendency-jars/jetty-server-9.0.2.v20130417.jar dependency-jars/javax.
- servlet-3.0.0.v201112011016.jar dependency-jars/jetty-http-9.0.2.v201
- 30417.jar dependency-jars/jetty-util-9.0.2.v20130417.jar dependency-j
- ars/jetty-io-9.0.2.v20130417.jar dependency-jars/jetty-webapp-9.0.2.v
- 20130417.jar dependency-jars/jetty-xml-9.0.2.v20130417.jar dependency
- -jars/jetty-servlet-9.0.2.v20130417.jar dependency-jars/jetty-securit
- y-9.0.2.v20130417.jar dependency-jars/slf4j-simple-1.7.7.jar dependen
- cy-jars/gson-2.3.1.jar
+ ency-jars/spark-core-2.5.1.jar dependency-jars/slf4j-api-1.7.13.jar d
+ ependency-jars/jetty-server-9.3.6.v20151106.jar dependency-jars/javax
+ .servlet-api-3.1.0.jar dependency-jars/jetty-http-9.3.6.v20151106.jar
+  dependency-jars/jetty-util-9.3.6.v20151106.jar dependency-jars/jetty
+ -io-9.3.6.v20151106.jar dependency-jars/jetty-webapp-9.3.6.v20151106.
+ jar dependency-jars/jetty-xml-9.3.6.v20151106.jar dependency-jars/jet
+ ty-servlet-9.3.6.v20151106.jar dependency-jars/jetty-security-9.3.6.v
+ 20151106.jar dependency-jars/websocket-server-9.3.6.v20151106.jar dep
+ endency-jars/websocket-common-9.3.6.v20151106.jar dependency-jars/web
+ socket-client-9.3.6.v20151106.jar dependency-jars/websocket-servlet-9
+ .3.6.v20151106.jar dependency-jars/websocket-api-9.3.6.v20151106.jar 
+ dependency-jars/slf4j-simple-1.7.7.jar dependency-jars/gson-2.3.1.jar
 Build-Jdk: 1.8.0_101
 Created-By: Maven Integration for Eclipse
 Main-Class: org.codeskull.java_fiddle_exec.web.App
