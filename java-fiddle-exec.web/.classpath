@@ -22,7 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/java-fiddle-exec"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jdk1.8.0_101/lib/ant-javafx.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jdk1.8.0_101/lib/dt.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jdk1.8.0_101/lib/javafx-mx.jar"/>

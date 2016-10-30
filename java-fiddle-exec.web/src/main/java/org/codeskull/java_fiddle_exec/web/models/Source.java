@@ -1,10 +1,5 @@
 package org.codeskull.java_fiddle_exec.web.models;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
-
-import org.eclipse.jetty.server.Request;
-
 public class Source {
 
 	private String code;

@@ -4,6 +4,8 @@ public class Response {
 
 	private String log;
 	private String response;
+	private String source;
+	private String error;
 	
 	public Response () { }
 	
@@ -11,8 +13,11 @@ public class Response {
 		this.setResponse(response);
 	}
 
-	public Response(String response, String log){
+	public Response(String response, String log, String source, String error){
 		this.setResponse(response);
+		this.setLog(log);
+		this.setSource(source);
+		this.setError(error);
 	}
 	
 	public String getLog() {
@@ -29,6 +34,22 @@ public class Response {
 
 	public void setResponse(String response) {
 		this.response = response;
+	}
+	
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
 	}
 
 }
