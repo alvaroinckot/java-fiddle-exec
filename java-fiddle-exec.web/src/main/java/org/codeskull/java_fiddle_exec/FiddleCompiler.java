@@ -3,7 +3,9 @@ package org.codeskull.java_fiddle_exec;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.tools.JavaCompiler;
@@ -14,16 +16,11 @@ import javax.tools.ToolProvider;
 public class FiddleCompiler implements Compiler {
 
 	private JavaFileManager fileManager;
-	private String fullName;
-	private String sourceCode;
 	private Writer writer;
 
-	public FiddleCompiler(String fullName, String sourceCode) {
-		this.fullName = fullName;
-		this.sourceCode = sourceCode;
+	public FiddleCompiler() {
 		this.fileManager = initFileManager();
 		this.writer = new StringWriter();
-		
 	}
 
 	private JavaFileManager initFileManager() {
@@ -37,26 +34,27 @@ public class FiddleCompiler implements Compiler {
 
 	}
 
-	public boolean compile() throws UnsupportedEncodingException {
+	public boolean compile(String className, String sourceCode) throws UnsupportedEncodingException {
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 
 		List<JavaFileObject> jfiles = new ArrayList<JavaFileObject>();
-		jfiles.add(new CharSequenceJavaFileObject(fullName, sourceCode));
+		jfiles.add(new CharSequenceJavaFileObject(className, sourceCode));
 		return compiler.getTask(writer, fileManager, null, null, null, jfiles).call();
 	}
 
-	public Object run() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		return fileManager.getClassLoader(null).loadClass(fullName).newInstance().toString();
+	public Object[] run(String className, String[] methods) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		@SuppressWarnings("rawtypes")
+		Class noparams[] = {};
+		Object instance = fileManager.getClassLoader(null).loadClass(className).newInstance();
+		List<Object> result = new LinkedList<Object>();
+		for (String method : methods) {
+			result.add(instance.getClass().getDeclaredMethod(method, noparams).invoke(instance));
+		}
+		return result.toArray();
 	}
 
 	public Writer getCompilerWriter() {
 		return writer;
 	}
-
-	public String getSourceCode() {
-		return sourceCode;
-	}
-	
-	
 	
 }

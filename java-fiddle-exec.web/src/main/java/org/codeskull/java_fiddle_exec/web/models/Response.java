@@ -3,21 +3,23 @@ package org.codeskull.java_fiddle_exec.web.models;
 public class Response {
 
 	private String log;
-	private String response;
+	private Object[] response;
 	private String source;
-	private String error;
+	private Boolean error;
+	private String exception;
 	
 	public Response () { }
-	
-	public Response(String response){
+
+	public Response(String[] response){
 		this.setResponse(response);
 	}
 
-	public Response(String response, String log, String source, String error){
+	public Response(Object[] response, String log, String source, Boolean error, String exception){
 		this.setResponse(response);
 		this.setLog(log);
 		this.setSource(source);
 		this.setError(error);
+		this.setException(exception);
 	}
 	
 	public String getLog() {
@@ -28,11 +30,11 @@ public class Response {
 		this.log = log;
 	}
 
-	public String getResponse() {
+	public Object[] getResponse() {
 		return response;
 	}
 
-	public void setResponse(String response) {
+	public void setResponse(Object[] response) {
 		this.response = response;
 	}
 	
@@ -44,12 +46,21 @@ public class Response {
 		this.source = source;
 	}
 
-	public String getError() {
+	public Boolean getError() {
 		return error;
 	}
 
-	public void setError(String error) {
+	public void setError(Boolean error) {
 		this.error = error;
+	}
+	
+	
+	public String getException() {
+		return exception;
+	}
+
+	public void setException(String exception) {
+		this.exception = exception;
 	}
 
 }
