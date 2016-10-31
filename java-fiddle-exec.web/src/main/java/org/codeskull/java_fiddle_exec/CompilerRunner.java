@@ -25,7 +25,8 @@ public class CompilerRunner implements Callable<Response> {
 		compiler.compile(className, sourceCode);
 		Object[] result = compiler.run(className, methods);
 		String console = new String(compiler.getConsoleStream().toByteArray(), StandardCharsets.UTF_8);
-		return new Response(result, console, sourceCode, false, null);
+		Object lastResult = result != null && result.length > 0 ? result[result.length -1] : "";
+		return new Response(console.split("\n"), sourceCode, "", lastResult);
     }
     
     public StringWriter  getCompilerStream() {

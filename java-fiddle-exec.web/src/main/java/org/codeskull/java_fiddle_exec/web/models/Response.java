@@ -2,59 +2,48 @@ package org.codeskull.java_fiddle_exec.web.models;
 
 public class Response {
 
-	private String log;
-	private Object[] response;
-	private String source;
-	private Boolean error;
+	private Object[] output;
+	private String code;
 	private String exception;
+	private Object result;
 	
 	public Response () { }
 
-	public Response(String[] response){
-		this.setResponse(response);
-	}
-
-	public Response(Object[] response, String log, String source, Boolean error, String exception){
-		this.setResponse(response);
-		this.setLog(log);
-		this.setSource(source);
-		this.setError(error);
+	public Response(Object[] output, String code, String exception, Object result) {
+		this.setCode(code);
+		this.setOutput(output);
 		this.setException(exception);
+		this.setResult(result);
 	}
 	
-	public String getLog() {
-		return log;
+	public Object getResult() {
+		return result;
 	}
 
-	public void setLog(String log) {
-		this.log = log;
+
+	public void setResult(Object result) {
+		this.result = result;
 	}
 
-	public Object[] getResponse() {
-		return response;
+	public Object[] getOutput() {
+		return output;
 	}
 
-	public void setResponse(Object[] response) {
-		this.response = response;
-	}
-	
-	public String getSource() {
-		return source;
+
+	public void setOutput(Object[] output) {
+		this.output = output;
 	}
 
-	public void setSource(String source) {
-		this.source = source;
+
+	public String getCode() {
+		return code;
 	}
 
-	public Boolean getError() {
-		return error;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public void setError(Boolean error) {
-		this.error = error;
-	}
-	
-	
+
 	public String getException() {
 		return exception;
 	}

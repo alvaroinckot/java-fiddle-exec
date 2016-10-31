@@ -30,9 +30,10 @@ public class CompileController {
 			try {
 				return future.get(Config.TIMEOUT, TimeUnit.MILLISECONDS);
 			} catch (Exception e) {
-				return new Response(null, e.getMessage(), 
-						req.queryParams("code"),  true, 
-						runner.getCompilerStream().toString());
+				return new Response(runner.getCompilerStream().toString().split("\n"), 
+						req.queryParams("code"), 
+						e.getMessage(),
+						"");
 			} 
 			
 		}, json());
