@@ -10,14 +10,16 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.codeskull.java_fiddle_exec.CompilerRunner;
+import org.codeskull.java_fiddle_exec.FiddleCompiler;
 import org.codeskull.java_fiddle_exec.web.models.Response;
 
 public class CompileController {
 	
-	public CompileController(Compiler compiler) {
+	public CompileController() {
 		
 		post("/compile", (req, res) -> {
 			
+			Compiler compiler = new FiddleCompiler();
 			CompilerRunner runner = new CompilerRunner(compiler, 
 					req.queryParams("class"),
 					req.queryParams("code"),

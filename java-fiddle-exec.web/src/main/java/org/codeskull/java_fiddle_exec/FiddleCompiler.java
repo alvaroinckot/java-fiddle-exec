@@ -1,5 +1,7 @@
 package org.codeskull.java_fiddle_exec;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -16,11 +18,15 @@ import javax.tools.ToolProvider;
 public class FiddleCompiler implements Compiler {
 
 	private JavaFileManager fileManager;
-	private Writer writer;
+	private Writer compilerWriter;
+	private PrintStream consoleStream;
+	private ByteArrayOutputStream byteConsoleStream;
 
 	public FiddleCompiler() {
 		this.fileManager = initFileManager();
-		this.writer = new StringWriter();
+		this.compilerWriter = new StringWriter();
+		this.byteConsoleStream = new ByteArrayOutputStream();
+		this.consoleStream = new PrintStream(this.byteConsoleStream);
 	}
 
 	private JavaFileManager initFileManager() {
@@ -39,22 +45,30 @@ public class FiddleCompiler implements Compiler {
 
 		List<JavaFileObject> jfiles = new ArrayList<JavaFileObject>();
 		jfiles.add(new CharSequenceJavaFileObject(className, sourceCode));
-		return compiler.getTask(writer, fileManager, null, null, null, jfiles).call();
+		return compiler.getTask(compilerWriter, fileManager, null, null, null, jfiles).call();
 	}
 
 	public Object[] run(String className, String[] methods) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		@SuppressWarnings("rawtypes")
 		Class noparams[] = {};
+		
+		System.setOut(this.consoleStream);
+		
 		Object instance = fileManager.getClassLoader(null).loadClass(className).newInstance();
 		List<Object> result = new LinkedList<Object>();
 		for (String method : methods) {
 			result.add(instance.getClass().getDeclaredMethod(method, noparams).invoke(instance));
 		}
 		return result.toArray();
+		
 	}
 
 	public Writer getCompilerWriter() {
-		return writer;
+		return compilerWriter;
+	}
+	
+	public ByteArrayOutputStream getConsoleStream() {
+		return this.byteConsoleStream;
 	}
 	
 }

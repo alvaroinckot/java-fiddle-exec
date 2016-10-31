@@ -13,10 +13,10 @@ public class App {
 		threadPool(Config.MAX_THREADS, Config.MIN_THREADS, Config.TIMEOUT);
 		
 		after((req, res) -> {
-			res.type("application/json");
+			res.type("application/json");,
 		});
 		
-		new CompileController(new FiddleCompiler());
+		new CompileController();
 
 
 	}

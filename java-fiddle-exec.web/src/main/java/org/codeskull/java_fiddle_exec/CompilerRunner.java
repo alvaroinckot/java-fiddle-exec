@@ -1,6 +1,7 @@
 package org.codeskull.java_fiddle_exec;
 
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Callable;
 
 import org.codeskull.java_fiddle_exec.web.models.Response;
@@ -23,7 +24,8 @@ public class CompilerRunner implements Callable<Response> {
     public Response call() throws Exception {
 		compiler.compile(className, sourceCode);
 		Object[] result = compiler.run(className, methods);
-		return new Response(result, "", sourceCode, true, null);
+		String console = new String(compiler.getConsoleStream().toByteArray(), StandardCharsets.UTF_8);
+		return new Response(result, console, sourceCode, false, null);
     }
     
     public StringWriter  getCompilerStream() {
